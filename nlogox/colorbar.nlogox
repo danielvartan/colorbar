@@ -63,7 +63,9 @@ end]]></code>
 
 ## WHAT IS IT?
 
-This model showcases how to generate a simple color bar plot using the [`scale-color`](https://docs.netlogo.org/dictionary.html#scale-color) primitive.
+This model demonstrates how to create a simple color bar plot using the [`scale-color`](https://docs.netlogo.org/dictionary.html#scale-color) primitive.
+
+At the moment, NetLogo does not have a built-in feature to create color bars. This model provides a workaround by drawing a color bar using temporary plot pens.
 
 ## HOW IT WORKS
 

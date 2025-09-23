@@ -1,4 +1,4 @@
-# color-bar
+# ColorBar
 
 <!-- badges: start -->
 [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
@@ -7,7 +7,9 @@
 
 ## Overview
 
-This repository showcases a [NetLogo](https://www.netlogo.org) model that shows how to generate a simple color bar plot using the [`scale-color`](https://docs.netlogo.org/dictionary.html#scale-color) primitive.
+This repository contains a [NetLogo](https://www.netlogo.org) model that demonstrates how to create a simple color bar plot using the [`scale-color`](https://docs.netlogo.org/dictionary.html#scale-color) primitive.
+
+At the moment, NetLogo does not have a built-in feature to create color bars. This model provides a workaround by drawing a color bar using temporary plot pens.
 
 <p align="center">
   <img src="images/interface.png" />
@@ -65,7 +67,7 @@ end
 
 Ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
 
-Once everything is set, open the `color-plot.nlogox` file located in the `nlogox` folder and click on the *Plot Color Bar* button to visualize the color bar.
+Once everything is set, open the `colorbar.nlogox` file located in the `nlogox` folder and click on the *Plot Color Bar* button to visualize the color bar.
 
 ## License
 
