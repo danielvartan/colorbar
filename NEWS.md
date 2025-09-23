@@ -1,3 +1,7 @@
+## v0.1.0 (development version)
+
+- Updated local variable names.
+
 ## v0.1.0 (2025-09-23)
 
 First release. 🎉

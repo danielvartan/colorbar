@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; ColorBar
 ;
-; Version: v0.1.0 (2025-09-23)
+; Version: v0.1.0.9000 (development version)
 ; Author: Daniel Vartanian
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: CC0 1.0 Universal <https://creativecommons.org/publicdomain/zero/1.0/>
@@ -17,28 +17,28 @@ to plot-color-bar [#plot-name]
   set-plot-y-range 0 1
 
   let #pens (range 1 11)
-  let #pen-length length #pens
-  let #pen-interval 1 / #pen-length
-  let #colors n-values #pen-length [random-float 100]
+  let #pens-length length #pens
+  let #pens-interval 1 / #pens-length
+  let #pens-colors n-values #pens-length [random-float 100]
 
-  let #ranges map [
-    #i -> (list ((#i - 1) / #pen-length) (#i / #pen-length))
+  let #pens-ranges map [
+    #i -> (list ((#i - 1) / #pens-length) (#i / #pens-length))
   ] #pens
 
   let #step-size 0.01
   let #step-line 0
 
-  (foreach #pens #colors #ranges [
+  (foreach #pens #pens-colors #pens-ranges [
     [#i #j #k] ->
       create-temporary-plot-pen (word #i "-bar")
       set-plot-pen-mode 1
-      set-plot-pen-interval #pen-interval
+      set-plot-pen-interval #pens-interval
       set-plot-pen-color #j
       plotxy (first #k)  1
 
       create-temporary-plot-pen (word #i "-line")
       set-plot-pen-mode 0
-      set-plot-pen-interval #pen-interval
+      set-plot-pen-interval #pens-interval
       set-plot-pen-color #j
 
       while [#step-line < 1] [
