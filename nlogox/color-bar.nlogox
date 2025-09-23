@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model version="NetLogo 7.0.0" snapToGrid="true">
+  <code><![CDATA[; ColorBar
+;
+; Version: v0.1.0 (2025-09-23)
+; Author: Daniel Vartanian
+; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
+; License: CC0 1.0 Universal <https://creativecommons.org/publicdomain/zero/1.0/>
+; Repository: <https://github.com/danielvartan/colorbar>
+;
+; Require: NetLogo >= 7.0.0
+
+to plot-color-bar [#plot-name]
+  set-current-plot #plot-name
+  clear-plot
+  set-plot-x-range 0 1
+  set-plot-y-range 0 1
+
+  let #pens (range 1 11)
+  let #pen-length length #pens
+  let #pen-interval 1 / #pen-length
+  let #colors n-values #pen-length [random-float 100]
+
+  let #ranges map [
+    #i -> (list ((#i - 1) / #pen-length) (#i / #pen-length))
+  ] #pens
+
+  let #step-size 0.01
+  let #step-line 0
+
+  (foreach #pens #colors #ranges [
+    [#i #j #k] ->
+      create-temporary-plot-pen (word #i "-bar")
+      set-plot-pen-mode 1
+      set-plot-pen-interval #pen-interval
+      set-plot-pen-color #j
+      plotxy (first #k)  1
+
+      create-temporary-plot-pen (word #i "-line")
+      set-plot-pen-mode 0
+      set-plot-pen-interval #pen-interval
+      set-plot-pen-color #j
+
+      while [#step-line < 1] [
+        plotxy (first #k) #step-line
+        plotxy (last #k) #step-line
+
+        set #step-line #step-line + #step-size
+      ]
+
+      set #step-line 0
+  ])
+end]]></code>
+  <widgets>
+    <view x="295" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="-16" height="39" showTickCounter="true" patchSize="1.061" fontSize="10" wrappingAllowedY="true" width="39" tickCounterLabel="ticks" maxPycor="16" updateMode="0" maxPxcor="16" minPxcor="-16"></view>
+    <plot x="10" autoPlotX="false" yMax="1.0" autoPlotY="false" y="55" xMin="0.0" height="120" legend="false" xMax="1.0" yMin="0.0" width="325" display="Color Bar">
+      <setup></setup>
+      <update></update>
+    </plot>
+    <button x="10" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="280" display="Plot Color Bar">plot-color-bar "Color Bar"</button>
+  </widgets>
+  <info># COLORBAR
+
+## WHAT IS IT?
+
+This model showcases how to generate a simple color bar plot using the [`scale-color`](https://docs.netlogo.org/dictionary.html#scale-color) primitive.
+
+## HOW IT WORKS
+
+The color bar can be drawn in any plot using the `plot-color-bar` procedure (see it in the *Code* tab). This procedure takes the plot name as an argument and creates a random color bar with 10 different colors. The implementation can be adapted to fulfill specific requirements.
+
+## HOW TO USE IT
+
+Click on the *Plot Color Bar* button to visualize the color bar. No setup is required.
+
+This model was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
+
+## LICENSE
+
+![CC0 license badge](cc0-license-badge)
+
+The code is licensed under the [Creative Commons CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/). This means that you can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.</info>
+  <turtleShapes>
+    <shape name="default" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="5"></point>
+        <point x="40" y="250"></point>
+        <point x="150" y="205"></point>
+        <point x="260" y="250"></point>
+      </polygon>
+    </shape>
+  </turtleShapes>
+  <linkShapes>
+    <shape name="default" curviness="0.0">
+      <lines>
+        <line x="-0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+        <line x="0.0" visible="true">
+          <dash value="1.0"></dash>
+          <dash value="0.0"></dash>
+        </line>
+        <line x="0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+      </lines>
+      <indicator>
+        <shape name="link direction" rotatable="true" editableColorIndex="0">
+          <line endX="90" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+          <line endX="210" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+        </shape>
+      </indicator>
+    </shape>
+  </linkShapes>
+  <previewCommands>setup repeat 75 [ go ]</previewCommands>
+  <resources>
+    <resource name="cc0-license-badge" extension="png">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</resource>
+  </resources>
+</model>
