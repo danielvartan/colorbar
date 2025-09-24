@@ -1,6 +1,8 @@
-## v0.1.0 (development version)
+## v0.1.1 (2025-09-23)
 
 - Updated local variable names.
+- Added [`LogoClim`](https://github.com/sustentarea/logoclim) as a reference about the color bar implementation.
+- Updated the documentation.
 
 ## v0.1.0 (2025-09-23)
 

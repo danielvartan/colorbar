@@ -7,9 +7,11 @@
 
 ## Overview
 
-This repository contains a [NetLogo](https://www.netlogo.org) model that demonstrates how to create a simple color bar plot using the [`scale-color`](https://docs.netlogo.org/dictionary.html#scale-color) primitive.
+This repository contains a [NetLogo](https://www.netlogo.org) model that demonstrates how to create a simple color bar plot.
 
-At the moment, NetLogo does not have a built-in feature to create color bars. This model provides a workaround by drawing a color bar using temporary plot pens.
+Since NetLogo does not currently include a built-in color bar widget, this model offers a workaround by drawing one with temporary plot pens.
+
+For another example of implementing a color bar in NetLogo, see the [`LogoClim`](https://github.com/sustentarea/logoclim) model.
 
 <p align="center">
   <img src="images/interface.png" />
@@ -26,19 +28,19 @@ to plot-color-bar [#plot-name]
   set-plot-x-range 0 1
   set-plot-y-range 0 1
 
-  let #pens (range 1 11)
-  let #pen-length length #pens
+  let #pen (range 1 11)
+  let #pen-length length #pen
   let #pen-interval 1 / #pen-length
-  let #colors n-values #pen-length [random-float 100]
+  let #pen-color n-values #pen-length [random-float 100]
 
-  let #ranges map [
+  let #pen-range map [
     #i -> (list ((#i - 1) / #pen-length) (#i / #pen-length))
-  ] #pens
+  ] #pen
 
-  let #step-size 0.01
-  let #step-line 0
+  let #line-step-size 0.01
+  let #line-step 0
 
-  (foreach #pens #colors #ranges [
+  (foreach #pen #pen-color #pen-range [
     [#i #j #k] ->
       create-temporary-plot-pen (word #i "-bar")
       set-plot-pen-mode 1
@@ -51,15 +53,15 @@ to plot-color-bar [#plot-name]
       set-plot-pen-interval #pen-interval
       set-plot-pen-color #j
 
-      while [#step-line < 1] [
-        plotxy (first #k) #step-line
-        plotxy (last #k) #step-line
+      while [#line-step < 1] [
+        plotxy (first #k) #line-step
+        plotxy (last #k) #line-step
 
-        set #step-line #step-line + #step-size
+        set #line-step #line-step + #line-step-size
       ]
 
-      set #step-line 0
-  ])
+      set #line-step 0
+  ]
 end
 ```
 
