@@ -1,3 +1,7 @@
+## v0.1.2 (2025-09-24)
+
+- Improved color bar drawing.
+
 ## v0.1.1 (2025-09-23)
 
 - Updated local variable names.

@@ -42,14 +42,7 @@ to plot-color-bar [#plot-name]
 
   (foreach #pen #pen-color #pen-range [
     [#i #j #k] ->
-      create-temporary-plot-pen (word #i "-bar")
-      set-plot-pen-mode 1
-      set-plot-pen-interval #pen-interval
-      set-plot-pen-color #j
-      plotxy (first #k)  1
-
-      create-temporary-plot-pen (word #i "-line")
-      set-plot-pen-mode 0
+      create-temporary-plot-pen (word #i)
       set-plot-pen-interval #pen-interval
       set-plot-pen-color #j
 
@@ -61,7 +54,7 @@ to plot-color-bar [#plot-name]
       ]
 
       set #line-step 0
-  ]
+  ])
 end
 ```
 
