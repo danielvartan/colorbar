@@ -1,0 +1,4 @@
+**/*.quarto_ipynb
+/.quarto/
+/*_cache/
+/cache/
